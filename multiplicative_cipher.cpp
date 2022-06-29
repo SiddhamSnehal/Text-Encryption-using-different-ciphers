@@ -1,6 +1,7 @@
 #include<iostream>
 
 using namespace std;
+// mod 31 ---> a=1,b=2,..      mod30 ---->a=0,b=1,....
 
 //for a=1,b=2,c=3,.......z=26
 
@@ -34,51 +35,47 @@ int inverse(int shift1)
 		
 	}
 }
-string encrypt(string plain_text,int key1,int key2,int len)
+string encrypt(string plain_text,int shift,int len)
 {
 	string cipher_text,new_letter;
 	for(int i=0;i<len;i++)
 	{
 		position = (plain_text[i] & 31);
-		new_pos = ((position * key1 )+ key2) % 27;
+		new_pos = (position* shift)%27;
 		new_letter = alphabet[new_pos-1];
-		cipher_text += new_letter;	
+		cipher_text += new_letter;
+		
 	}
 	return cipher_text;	
 }
 
- string decrypt(string cipher_text,int inv,int shift2, int len)
+ string decrypt(string cipher_text,int shift,int len)
 {
 	string plain_text,new_letter;
 	for(int i=0;i<len;i++)
 	{
 		position = (cipher_text[i] & 31);
-		new_pos = ((position- shift2) * inv) % 27;
-		if(new_pos<0){
-			new_pos=new_pos+27;
-		}
+		new_pos = (position * shift)%27;
 		new_letter = alphabet[new_pos-1];
 		plain_text += new_letter;	
-	}	
+	}
 	return plain_text;	
 }
 
 
 int main()
 {
-	int key1,len,key2,len1,inv,shift1,shift2;
+	int shift,len,shift1,len1,inv;
 	string plain_text,cipher_text, new_letter;
 	string encrypted,decrypted;
 	
 	cout<<"Enter plain text: "<<endl;
 	getline(cin,plain_text);
 	cout<<"Enter Multiplicative key value: ";
-	cin>>key1;
-	cout<<"Enter additive key value: ";
-	cin>>key2;
+	cin>>shift;
 	len=plain_text.length();
 
-	encrypted= encrypt(plain_text,key1,key2,len);
+	encrypted= encrypt(plain_text,shift,len);
 	cout<<encrypted<<endl;
 	
 	cout<<"Enter cipher text: "<<endl;
@@ -87,18 +84,18 @@ int main()
 	getline(cin,cipher_text);
 	cout<<"Enter Multiplicative key value: ";
 	cin>>shift1;
-	cout<<"Enter additive key value: ";
-	cin>>shift2;
 	if(checkCoPrime(shift1)== 1)
 	{
 		inv=inverse(shift1);
 		len1=cipher_text.length();
-		decrypted = decrypt(cipher_text,inv,shift2,len1);
+		decrypted = decrypt(cipher_text,inv,len1);
+
 		cout<<decrypted<<endl;
 	}
 	else
 	{
-		cout<<"Enter valid Multiplicative key";
+		cout<<"Enter valid key";
 	}
 
+	
 }
