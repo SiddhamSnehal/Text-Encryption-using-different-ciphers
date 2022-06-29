@@ -1,5 +1,5 @@
 #include<iostream>
-#include"validation.h"
+
 using namespace std;
 
 //for a=1,b=2,c=3,.......z=26
@@ -49,23 +49,25 @@ int main()
 	string encrypted,decrypted;
 	string plain_text,cipher_text;
 	
-	/*cout<<"1.Additive Encryption.\n2.Additive Decryption.\n "<<endl;
+	cout<<"1.Additive Encryption.\n2.Additive Decryption.\n "<<endl;
 	cin>>choice;
 	switch(choice)
 	{
 		case 1:
-		{*/
-			cout<<"Enter plain text: "<<endl;//sout
-			getline(cin,plain_text);//string
-			cout<<"Enter additive key value: ";//sout
-			cin>>shift;//sc.nextInt();
-			len=plain_text.length();//same
+		{
+			cout<<"Enter plain text: "<<endl;
+			cin.clear();
+			cin.ignore(100,'\n');
+			getline(cin,plain_text);
+			cout<<"Enter additive key value: ";
+			cin>>shift;
+			len=plain_text.length();
 		
-			encrypted= encrypt(plain_text,shift,len);//same
-			cout<<encrypted<<endl;	//sout	
-	/*	}
+			encrypted= encrypt(plain_text,shift,len);
+			cout<<encrypted<<endl;		
+		}
 		case 2:
-		{*/
+		{
 			cout<<"Enter cipher text: "<<endl;
 			cin.clear();
 			cin.ignore(100,'\n');
@@ -77,19 +79,17 @@ int main()
 			decrypted = decrypt(cipher_text,shift1,len1);
 		
 			cout<<decrypted<<endl;
-		/*	break;
+			break;
 		}
 		case 3 :
 		{
 			exit(0);
 		}
 		default:
-			{
-				cout<<"Enter valid choice."<<endl;
-			}*/
-	
-	
-	
+		{
+			cout<<"Enter valid choice."<<endl;
+		}
 	return 0;
-	
 }
+}
+

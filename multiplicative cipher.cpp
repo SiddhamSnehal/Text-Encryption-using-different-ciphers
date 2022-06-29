@@ -1,6 +1,7 @@
 #include<iostream>
 #include"validation.h"
 using namespace std;
+// mod 31 ---> a=1,b=2,..      mod30 ---->a=0,b=1,....
 
 //for a=1,b=2,c=3,.......z=26
 
